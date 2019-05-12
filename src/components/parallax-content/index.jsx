@@ -1,6 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class ParallaxContent extends React.Component {
+
+    static propTypes = {
+        scrollEnd: PropTypes.number,
+        velocity: PropTypes.number,
+        start: PropTypes.number
+    };
+
 
     constructor(props) {
         super(props);

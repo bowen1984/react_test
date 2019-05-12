@@ -1,21 +1,49 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Spring } from 'react-spring/renderprops';
-import {  easeCubicOut } from 'd3-ease';
+import { easeCubicOut } from 'd3-ease';
 
 import SlideGallery from "components/slide-gallery";
 import { Container, WrapDescription, WrapGallery, Description, WhiteBg } from "./theme";
 
 
+/** PARAMETRI ANIMAZIONE */
+const animation={
+    easing: easeCubicOut,
+    bg:{
+        duration:300,
+        delay:[0,150]
+    },
+    gallery:{
+        duration:300,
+        delay:[110,100]
+    },
+    desc:{
+        duration:400,
+        delay:[0,200]
+    }
+};
+/**  */
+
 class CardDialog extends React.Component {
+    
+    static propTypes = {
+        card: PropTypes.shape({
+            description: PropTypes.string,
+            gallery: PropTypes.array
+        }),
+        onClose: PropTypes.func
+    };
 
     state = { closing: false };
-
-    onFinishAnimation = () =>{
-        if(this.state.closing){
-            const {onClose } = this.props;
-            if(onClose){
+   
+    onFinishAnimation = () => {
+        if (this.state.closing) {
+            const { onClose } = this.props;
+            if (onClose) {
                 onClose();
-            }   
+            }
         }
     }
 
@@ -26,10 +54,10 @@ class CardDialog extends React.Component {
             return (
                 <Container onClick={() => { this.setState({ closing: true }) }}>
                     <Spring
-                        config={{ duration: 300, easing: easeCubicOut }}
+                        config={{ duration: animation.bg.duration, easing: animation.easing }}
                         from={{ top: "100%" }}
                         to={{ top: "50%" }}
-                        delay={this.state.closing ? 150:0}
+                        delay={this.state.closing ? animation.bg.delay[1] : animation.bg.delay[0]}
                         reset={this.state.closing}
                         reverse={this.state.closing}
                         onRest={this.onFinishAnimation}
@@ -40,10 +68,10 @@ class CardDialog extends React.Component {
                     </Spring>
                     <WrapDescription>
                         <Spring
-                            config={{ duration: 400,  easing: easeCubicOut  }}
+                            config={{ duration: animation.desc.duration, easing: animation.easing }}
                             from={{ opacity: 0, transform: "translate(0,25px)" }}
                             to={{ opacity: 1, transform: "translate(0,0px)" }}
-                            delay={this.state.closing ? 0 : 200}
+                            delay={this.state.closing ? animation.desc.duration[1] : animation.desc.duration[0]}
                             reset={this.state.closing}
                             reverse={this.state.closing}
                         >
@@ -54,8 +82,8 @@ class CardDialog extends React.Component {
                     </WrapDescription>
                     <WrapGallery>
                         <Spring
-                            config={{ duration: 300,easing:easeCubicOut }}
-                            delay={this.state.closing ? 100 : 110 }
+                            config={{ duration: animation.gallery.duration, easing: animation.easing  }}
+                            delay={this.state.closing ? animation.desc.delay[1] : animation.desc.delay[0]}
                             from={{ opacity: 0, transform: "translate(0,25px)" }}
                             to={{ opacity: 1, transform: "translate(0,0px)" }}
                             reset={true}

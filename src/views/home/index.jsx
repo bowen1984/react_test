@@ -13,28 +13,27 @@ import { Row, MainCol, SecondaryCol } from "components/theme";
 // Caricamento dati 
 import PostData from "data/post";
 import CardData from "data/card";
+// ------------
+
 
 class Home extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectCard: null,
-            selectCardId:-1
-        };
+    state = {
+        selectCard: null,
+        selectCardId: -1
     }
 
-    onCloseZoom = () =>{
-        this.setState({selectCard:null,selectCardId:-1});
+    onCloseZoom = () => {
+        this.setState({ selectCard: null, selectCardId: -1 });
     }
 
     onStartCloseZoom = () => {
-        this.setState({selectCardId:-1});
+        this.setState({ selectCardId: -1 });
     }
 
-    zoomCard = (cardData, source) => {
+    onOpenCard = (cardData, source) => {
         this.setState({
-            selectCardId:cardData.id,
+            selectCardId: cardData.id,
             selectCard: {
                 card: cardData,
                 element: source
@@ -47,8 +46,8 @@ class Home extends React.Component {
         let dialog = null;
         if (this.state.selectCard) {
             dialog = (
-                <AnimateDialog 
-                    source={this.state.selectCard.element} 
+                <AnimateDialog
+                    source={this.state.selectCard.element}
                     onStartClose={this.onStartCloseZoom}
                     onClose={this.onCloseZoom}>
                     <CardDialog card={this.state.selectCard.card} />
@@ -67,7 +66,7 @@ class Home extends React.Component {
                             </MainCol>
                             <SecondaryCol>
                                 <ParallaxContent start={-112} scrollEnd={553} velocity={0.29224}>
-                                    <ListCard cards={CardData} onSelectCard={this.zoomCard} selected={this.state.selectCardId} />
+                                    <ListCard cards={CardData} onSelectCard={this.onOpenCard} selected={this.state.selectCardId} />
                                 </ParallaxContent>
                             </SecondaryCol>
                         </Row>

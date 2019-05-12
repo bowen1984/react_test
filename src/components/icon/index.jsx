@@ -1,13 +1,17 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 
 class Icon extends React.Component {
 
+    static propTypes = {
+        icon: PropTypes.string
+    };
+
     render() {
-        const {icon} = this.props;
+        const { icon, alt, ...props } = this.props;
         const path = `/assets/images/icons/${icon}.png`;
         return (
-            <img src={path} />
+            <img src={path} alt={alt} {...props} />
         );
     }
 }

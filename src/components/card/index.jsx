@@ -45,7 +45,7 @@ class Card extends React.Component {
         const { icon, title, description, number, gallery } = card;
         return (
             <WrapCard style={this.getStyleCard(number)} ref={this.initElement}>
-                {icon && <Icon><IconImg icon={icon} /></Icon>}
+                {icon && <Icon><IconImg icon={icon} alt="icon" /></Icon>}
                 {title && <Title>{title}</Title>}
                 {description && <Description>{description}</Description>}
                 {gallery && <ZoomButton onClick={this.onClickZoom}>{"Clicca qui"}</ZoomButton>}

@@ -1,23 +1,32 @@
 import React from "react";
+import PropTypes from "prop-types";
+
+
 import { Spring } from 'react-spring/renderprops';
 import { easePolyOut } from 'd3-ease';
 import { DialogBg, DialogContent, EmptyContent } from "./theme";
 
 
 class AnimateDialog extends React.Component {
+    static propTypes = {
+        source: PropTypes.object,
+        maxWidth: PropTypes.number,
+        maxHeight: PropTypes.number,
+        onStartClose: PropTypes.func,
+        onClose: PropTypes.func
+    };
 
     state = { status: "opening" }
 
     componentWillMount() {
         // Prevent scroll
-         document.body.style.overflow="hidden"; 
-         document.body.classList.add('modal-open');
-         
+        document.body.style.overflow = "hidden";
+        document.body.classList.add('modal-open');
     }
 
     componentWillUnmount() {
-        document.body.style.overflow=null;
-        
+        document.body.style.overflow = null;
+        document.body.classList.remove('modal-open');
     }
 
     /**
@@ -45,18 +54,21 @@ class AnimateDialog extends React.Component {
         const { maxWidth, maxHeight } = this.props;
         let width = maxWidth ? maxWidth : 957;
         let height = maxHeight ? maxHeight : 658;
-        width =  Math.min(width, window.innerWidth);
+        width = Math.min(width, window.innerWidth);
         height = Math.min(height, window.innerHeight);
-        let top = window.innerHeight*0.11;
+        let top = window.innerHeight * 0.11;
         return {
-            left: (window.innerWidth-width)/2,
-            top: Math.min(top,(window.innerHeight-height)/2),
+            left: (window.innerWidth - width) / 2,
+            top: Math.min(top, (window.innerHeight - height) / 2),
             width: width,
             height: height
         }
     }
 
-    onFinishSpring = () => {
+    /** 
+     * Gestione fine animazione apertura/chiusura popup
+     */
+    onFinishAnimation = () => {
         if (this.state.status === "opening") {
             this.setState({ status: "open" });
         }
@@ -68,18 +80,20 @@ class AnimateDialog extends React.Component {
             }
         }
     }
-    onClose = () => {
-       this.setState({status:"closing"});
-       document.body.classList.remove('modal-open');
-       const {onStartClose} = this.props;
-       if(onStartClose){
+
+    /** Gestione richiesta chiusura popup */
+    onRequestClose = () => {
+        this.setState({ status: "closing" });
+        const { onStartClose } = this.props;
+        if (onStartClose) {
             onStartClose()
-       }
+        }
     }
 
+    /** Aggiunge l'handle chiusura popup hai figli */
     injectCloseChildreen = () => {
         return React.Children.map(this.props.children, child =>
-            React.cloneElement(child, { ...child.props,onClose:this.onClose}));
+            React.cloneElement(child, { ...child.props, onClose: this.onRequestClose }));
     }
 
     render() {
@@ -92,7 +106,7 @@ class AnimateDialog extends React.Component {
                     to={{ opacity: 1 }}
                     reset={reverse}
                     reverse={reverse}
-                    >
+                >
                     {props => <DialogBg style={props} />}
                 </Spring>
                 <Spring
@@ -101,7 +115,7 @@ class AnimateDialog extends React.Component {
                     config={{ duration: 200, easing: easePolyOut }}
                     from={this.contentStyleFromAnimation()}
                     to={this.contentStyleToAnimation()}
-                    onRest={this.onFinishSpring}
+                    onRest={this.onFinishAnimation}
                 >
                     {props => (
                         <DialogContent style={props}>

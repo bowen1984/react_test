@@ -1,16 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { Bg } from "./theme";
 
 class AnimatedBd extends React.Component {
+    static propTypes = {
+        offsetStart: PropTypes.number,
+        color: PropTypes.string
+    };
 
     el = null;
-    constructor(props) {
-        super(props);
-        this.state = {
-            width: 0
-        }
-    }
+    state={width:0}
 
     componentWillMount() {
         window.addEventListener("scroll", this.handleScroll);

@@ -1,9 +1,13 @@
 import React from "react";
-
-
+import PropTypes from "prop-types";
 import { StickyContainer } from "./theme";
-//336
+
+
 class HeaderSticky extends React.Component {
+
+    static propTypes = {
+        maxScroll: PropTypes.number
+    };
 
     constructor(props) {
         super(props);
@@ -45,7 +49,6 @@ class HeaderSticky extends React.Component {
             <StickyContainer style={this.calcolateStyle()}>
                 {this.props.children}
             </StickyContainer>
-
         );
     }
 }
