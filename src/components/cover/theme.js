@@ -6,4 +6,8 @@ export const WrapCover = styled.div`
     background-position: center top;
     width:100%;
     height:640px;
+
+    @media (max-width:700px){
+        height:70vh;
+    }
 `;

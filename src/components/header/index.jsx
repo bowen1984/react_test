@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Menu from "components/menu";
 import HeaderSticky from "components/header-sticky";
-import { WrapHeader, Logo, Bar, SideCol, MenuCol } from "./theme";
+import { WrapHeader, Logo, Bar, EmptyCol, LogoCol, MenuCol } from "./theme";
 import { MainContainer } from "components/theme";
 
 class Header extends React.Component {
@@ -18,9 +18,9 @@ class Header extends React.Component {
                 <HeaderSticky maxScroll={340}>
                     <MainContainer>
                         <Bar>
-                            <SideCol><Logo>Asdrubale</Logo></SideCol>
+                            <LogoCol><Logo>Asdrubale</Logo></LogoCol>
                             <MenuCol><Menu items={menu} /></MenuCol>
-                            <SideCol></SideCol>
+                            <EmptyCol />
                         </Bar>
                     </MainContainer>
                 </HeaderSticky>

@@ -6,7 +6,8 @@ class ParallaxContent extends React.Component {
     static propTypes = {
         scrollEnd: PropTypes.number,
         velocity: PropTypes.number,
-        start: PropTypes.number
+        start: PropTypes.number,
+        minWidth: PropTypes.number
     };
 
 
@@ -38,8 +39,9 @@ class ParallaxContent extends React.Component {
     }
 
     calcolateStyle = () => {
-        const { start, velocity } = this.props;
-        if (start && velocity) {
+        const { start, velocity, minWidth } = this.props;
+        let mW = minWidth ? minWidth : 0;
+        if (start && velocity && mW < window.innerWidth) {
             const marginTop = start + this.state.scrollTop * velocity;
             return {
                 marginTop

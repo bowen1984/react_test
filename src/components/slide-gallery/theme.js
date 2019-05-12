@@ -10,6 +10,10 @@ export const WrapImages = styled.div`
     display:flex;
     flex-direction:row;
     padding:0px 97px;
+
+    @media (max-width:500px){
+        padding:0px 40px;
+    }
 `;
 
 export const Img = styled.img`

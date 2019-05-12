@@ -10,9 +10,21 @@ export const Bar = styled.div`
     flex-direction:row;
     align-items:center;
     height:60px;
+
+    @media (max-width:750px){
+        padding:0px 20px;
+    }
 `;
 
-export const SideCol = styled.div`
+export const EmptyCol = styled.div`
+    width:150px;
+    @media (max-width:750px){
+        display:none;
+    }
+`;
+
+
+export const LogoCol = styled.div`
     width:150px;
 `;
 
@@ -24,5 +36,8 @@ export const Logo = styled.div`
     font-size: 20px;
     color: #000000;
     letter-spacing: 0;
-    line-height: 18px;
+
+    @media (max-width:400px){
+        font-size:16px;
+    }
 `;

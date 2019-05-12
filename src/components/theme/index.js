@@ -17,6 +17,14 @@ export const pageSize = 1152;
 export const MainContainer = styled.div`
     max-width:${pageSize}px;
     margin:0px auto;
+
+    @media (max-width:1200px){
+        max-width:900px;
+    }
+
+    @media (max-width:900px){
+        max-width:750px;
+    }
 `;
 
 export const Row = styled.div`
@@ -28,10 +36,24 @@ export const Row = styled.div`
 
 export const MainCol = styled.div`
     width:566px;
+    @media (max-width:1200px){
+        width:500px;
+    }
+    @media (max-width:900px){
+        width:100%;
+    }
 `;
 
 export const SecondaryCol = styled.div`
     width:310px;
+
+    @media (max-width:1200px){
+        width:250px;
+    }
+
+    @media (max-width:900px){
+        width:100%;
+    }
 `;
 
 

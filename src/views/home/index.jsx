@@ -65,7 +65,7 @@ class Home extends React.Component {
                                 <ListPost posts={PostData} />
                             </MainCol>
                             <SecondaryCol>
-                                <ParallaxContent start={-112} scrollEnd={553} velocity={0.29224}>
+                                <ParallaxContent start={-112} scrollEnd={553} velocity={0.29224} minWidth={900}>
                                     <ListCard cards={CardData} onSelectCard={this.onOpenCard} selected={this.state.selectCardId} />
                                 </ParallaxContent>
                             </SecondaryCol>

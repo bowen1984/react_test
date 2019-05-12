@@ -13,11 +13,14 @@ export const ColImage = styled.div`
     display:flex;
     flex-direction:column;
     justify-content: space-between;
+    margin-bottom:20px;
+    min-height:190px;
 `;
 
 export const BigImg = styled.img`
     width:177px;
     display:block;
+    margin-bottom:20px;
 `;
 
 export const SmallImg = styled.img`

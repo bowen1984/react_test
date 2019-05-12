@@ -6,6 +6,7 @@ export const WrapCard = styled.div`
     flex-direction:column;
     justify-content:center;
     width:100%;
+    max-width:310px;
     min-height:414px;
     box-sizing:border-box;
     padding:28px;

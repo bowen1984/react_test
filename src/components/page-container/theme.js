@@ -14,5 +14,12 @@ export const Content = styled.div`
     padding:42px 97px;
     position:relative;
     z-index:1;
-    width:
+    
+    @media (max-width:1200px){
+        padding:42px 50px;
+    }
+
+    @media (max-width:500px){
+        padding:30px;
+    }
 `;

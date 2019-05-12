@@ -35,6 +35,10 @@ export const WrapDescription = styled.div`
     padding:75px 97px;
     z-index:2;
     max-width:650px;
+
+    @media (max-width:500px){
+        padding:30px 40px;
+    }
 `;
 
 export const WrapGallery = styled.div`

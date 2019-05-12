@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-import { pageSize } from "components/theme";
 
 export const Bg = styled.div`
     position:absolute;
     top:0px;
     height:100%;
     left:50%;
-    width:${pageSize - 24}px
+    width:1000px
+
 
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
@@ -20,4 +20,16 @@ export const Bg = styled.div`
     -o-transform: translate(-50%,0%);
     -ms-transform: translate(-50%,0%);
     transform: translate(-50%,0%);
+
+    @media (max-width:1200px){
+        width:800px;
+    }
+
+    @media (max-width:900px){
+        width:700px;
+    }
+    
+    @media (max-width:700px){
+        display:none;
+    }
 `;

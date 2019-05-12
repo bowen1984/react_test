@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types"
 
 import Card from "components/card";
-import { WrapCard } from "./theme";
+import { WrapCard,List } from "./theme";
 
 class ListCard extends React.Component {
 
@@ -16,7 +16,7 @@ class ListCard extends React.Component {
         const { cards, onSelectCard, selected } = this.props;
         if (cards) {
             return (
-                <div>
+                <List>
                     {cards.map((card, i) => {
                         return (
                             <WrapCard key={`c${i}`} >
@@ -24,7 +24,7 @@ class ListCard extends React.Component {
                             </WrapCard>
                         );
                     })}
-                </div>
+                </List>
             );
         }
         return null;
