@@ -16,17 +16,30 @@ class AnimateDialog extends React.Component {
         onClose: PropTypes.func
     };
 
-    state = { status: "opening" }
+    state = { 
+        status: "opening", 
+        screenX: window.innerWidth,
+        screenY: window.innerHeight
+    }
 
     componentWillMount() {
         // Prevent scroll
         document.body.style.overflow = "hidden";
+        window.addEventListener("resize", this.onResize);
         document.body.classList.add('modal-open');
     }
 
     componentWillUnmount() {
         document.body.style.overflow = null;
+        window.removeEventListener("resize", this.onResize);
         document.body.classList.remove('modal-open');
+    }
+
+    onResize = () =>{
+        this.setState({
+            screenX: window.innerWidth,
+            screenY: window.innerHeight
+        })
     }
 
     /**
