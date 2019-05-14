@@ -67,8 +67,8 @@ class AnimateDialog extends React.Component {
         const { maxWidth, maxHeight } = this.props;
         let width = maxWidth ? maxWidth : 957;
         let height = maxHeight ? maxHeight : 658;
-        width = Math.min(width, window.innerWidth);
-        height = Math.min(height, window.innerHeight);
+        width = Math.min(width, window.innerWidth - 20);
+        height = Math.min(height, window.innerHeight - 20);
         let top = window.innerHeight * 0.11;
         return {
             left: (window.innerWidth - width) / 2,
