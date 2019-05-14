@@ -48,6 +48,7 @@ class AnimatedBd extends React.Component {
         const { color } = this.props;
         return {
             backgroundColor: color,
+            left: (this.state.width === 0 ? "50%":"0%"),
             width: this.state.width
         };
     }
